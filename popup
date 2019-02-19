@@ -1,0 +1,36 @@
+
+chrome.cookies.get({ url: 'http://abccorrector.com', name: 'cook' },
+  function (cookie) {
+    if (cookie) {
+      if(cookie.value == '0'){
+		document.getElementById("content").style.display = 'none';
+		document.getElementById("foot").style.display = 'none';
+		document.getElementById("content_alta").style.display = 'block';
+	  }
+    }else{
+		document.getElementById("content").style.display = 'none';
+		document.getElementById("foot").style.display = 'none';
+		document.getElementById("content_alta").style.display = 'block';
+	}
+});
+chrome.cookies.get({ url: 'http://abccorrector.com', name: '_alt' },
+  function (cookie) {
+    if (cookie) {
+      if(cookie.value == '0'){
+		document.getElementById("foot").style.display = 'block';
+	  }
+    }else{
+		document.getElementById("foot").style.display = 'block';
+	}
+});
+chrome.tabs.query({
+    active: true,
+    currentWindow: true
+}, function(tabs) {
+	var str = tabs[0].url;
+	if ( str.indexOf("app.abccorrector.com") > 0){
+		document.getElementById('content').style.display = 'none';
+		document.getElementById('content1').style.display = 'block';
+	}
+});
+
